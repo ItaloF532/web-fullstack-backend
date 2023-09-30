@@ -3,10 +3,14 @@
   "version": "1.0.0",
   "description": "Backend http for as64a sufficiency exam",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "ItaloF532",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^4.7.2"
+  }
 }
