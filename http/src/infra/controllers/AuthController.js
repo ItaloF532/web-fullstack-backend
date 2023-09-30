@@ -15,7 +15,7 @@ class AuthController {
       throw new Error("Invalid credentials!");
     }
 
-    return this.jwtUtil.encode(username);
+    return this.jwtUtil.encode({ id: user.id, username: user.username });
   }
 }
 

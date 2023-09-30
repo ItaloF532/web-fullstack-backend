@@ -13,7 +13,8 @@ function authMiddleware(req, res, next) {
     const decodedToken = jwtUtil.decode(token.replace("Bearer ", ""));
 
     req.user = {
-      username: decodedToken.username,
+      id: decodedToken.user.id,
+      username: decodedToken.user.username,
     };
 
     next();
