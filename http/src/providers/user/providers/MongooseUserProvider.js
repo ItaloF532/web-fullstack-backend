@@ -1,6 +1,18 @@
 import userModel from "../models/UserModel.js";
+import { ObjectId } from "mongoose";
 
 class MongooseUserProvider {
+  async getUserById(id) {
+    const mongoId = new ObjectId(id);
+    const user = await userModel.findById(mongoId);
+
+    return {
+      id: user._id.toString(),
+      username: user.username,
+      password: user.password,
+    };
+  }
+
   async getUserByUserName(username) {
     const user = await userModel.findOne({
       username,
