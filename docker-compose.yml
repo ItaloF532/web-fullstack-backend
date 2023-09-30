@@ -11,6 +11,12 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: aHR0cC1mb3ItYXM2NGEtc3VmZmljaWVuY3ktZXhhbQ==
+      
+  redis:
+    image: redis:latest
+    hostname: redis
+    ports:
+      - 6379:6379
 
 volumes:
   mongodb_data:
