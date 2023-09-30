@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
-import { SECRET_KEY } from "../constants";
+import { SECRET_KEY } from "../constants/index.js";
 
 class JwtUtil {
-  encode() {
+  encode(username) {
     return jwt.sign({ username }, SECRET_KEY, { expiresIn: '5m' });
   }
 

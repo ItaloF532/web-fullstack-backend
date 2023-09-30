@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import JwtUtil from '../../utils/JwtUtil';
+import JwtUtil from '../../utils/JwtUtil.js';
 
 const authRouter = Router();
 
@@ -9,7 +9,7 @@ authRouter.post('/login', (req, res) => {
     const token = new JwtUtil().encode(username);
     res.json({ token });
   } else {
-    res.status(401).json({ message: 'Username and/or password not found' });
+    res.status(401).json({ message: 'Invalid credentials!' });
   }
 });
 
