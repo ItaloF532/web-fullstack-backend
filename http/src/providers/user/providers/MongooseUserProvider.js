@@ -27,7 +27,7 @@ class MongooseUserProvider {
 
   async getUsersName() {
     const users = await userModel.find();
-    return users.map((user) => user.username);
+    return users.map((user) => ({ id: user.id, username: user.username }));
   }
 }
 
