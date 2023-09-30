@@ -12,6 +12,11 @@ class MongooseUserProvider {
       password: user.password,
     };
   }
+
+  async getUsersName() {
+    const users = await userModel.find();
+    return users.map((user) => user.username);
+  }
 }
 
 export default MongooseUserProvider;
