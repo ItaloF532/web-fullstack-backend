@@ -1,8 +1,5 @@
 import Redis, { Redis as RedisClient } from "ioredis";
-import ICacheProvider from "@domain/cache/data/ICacheProvider";
-import ILogsData from "@domain/logs/data/ILogsData";
-import NewRelicLogsProvider from "@providers/newRelic/logs/NewRelicLogsProvider";
-import { REDIS_HOST, REDIS_PORT } from "../../constants";
+import { REDIS_HOST, REDIS_PORT } from "../../constants/index.js";
 
 class RedisCacheProvider {
   client;
