@@ -1,3 +1,4 @@
+import JwtUtil from "../../utils/JwtUtil.js";
 import MongooseUserProvider from "../../providers/user/providers/MongooseUserProvider.js";
 
 class AuthController {
