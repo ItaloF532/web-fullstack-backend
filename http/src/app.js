@@ -1,5 +1,5 @@
 import express from "express";
-import "./providers/connection.js";
+import "./providers/mongoose/connection.js";
 import authRouter from "./infra/routes/auth.routes.js";
 import userRouter from "./infra/routes/user.routes.js";
 import chatRouter from "./infra/routes/chat.routes.js";

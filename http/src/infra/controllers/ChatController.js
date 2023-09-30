@@ -1,4 +1,4 @@
-import MongooseChatProvider from "../../providers/chats/providers/MongooseChatProvider.js";
+import MongooseChatProvider from "../../providers/mongoose/chats/providers/MongooseChatProvider.js";
 
 class ChatController {
   chatProvider = new MongooseChatProvider();
