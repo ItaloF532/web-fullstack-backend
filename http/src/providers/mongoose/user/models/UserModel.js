@@ -10,10 +10,10 @@ const userSchema = new Schema(
   },
   {
     timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" },
-    collection: "user",
+    collection: "users",
   }
 );
 
-const userModel = database.model("user", userSchema);
+const userModel = database.model("users", userSchema);
 
 export default userModel;
