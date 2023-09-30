@@ -14,4 +14,10 @@ userRouter.get("/get-users", authMiddleware, async (req, res) => {
   res.send({ users });
 });
 
+userRouter.get("/get-user", authMiddleware, async (req, res) => {
+  const user = await userController.getUserData(req.user.id);
+
+  res.send({ user });
+});
+
 export default userRouter;

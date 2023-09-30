@@ -6,6 +6,10 @@ class UserController {
   async getUsersName() {
     return await this.mongoUserProvider.getUsersName();
   }
+
+  async getUserData(userId) {
+    return await this.mongoUserProvider.getUserById(userId);
+  }
 }
 
 export default UserController;
