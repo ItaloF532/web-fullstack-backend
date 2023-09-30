@@ -1,4 +1,5 @@
 import chatModel from "../models/ChatModel.js";
+import { ObjectId } from "mongoose";
 
 class MongooseChatProvider {
   async createChat(users) {
@@ -10,8 +11,9 @@ class MongooseChatProvider {
   }
 
   async getChatsByUserId(userId) {
-    const aggregation = `{ audiences: { $in: [ ObjectId('${userId}') ] } }`;
-    const chats = await chatModel.aggregate(aggregation);
+    const chats = await chatModel.find({
+      users: { $elemMatch: { $eq: userId } },
+    });
     return chats;
   }
 }
