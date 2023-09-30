@@ -11,7 +11,7 @@ class AuthController {
     const isValidUserName = username === user.username;
     const isValidPassword = password === user.password;
 
-    if (!isValidUserName || isValidPassword) {
+    if (!isValidUserName || !isValidPassword) {
       throw new Error("Invalid credentials!");
     }
 
