@@ -12,7 +12,6 @@ class MongooseChatProvider {
   async getChatsByUserId(userId) {
     const aggregation = `{ audiences: { $in: [ ObjectId('${userId}') ] } }`;
     const chats = await chatModel.aggregate(aggregation);
-    console.log(chats);
     return chats;
   }
 }
