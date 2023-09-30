@@ -1,15 +1,22 @@
-import { Router } from 'express';
-import JwtUtil from '../../utils/JwtUtil.js';
+import { Router } from "express";
+import AuthController from "../controllers/AuthController.js";
+import JwtUtil from "../../utils/JwtUtil.js";
 
 const authRouter = Router();
+const authController = new AuthController();
 
-authRouter.post('/login', (req, res) => {
-  const { username, password } = req.body;
-  if (username === 'usuario' && password === 'senha') {
-    const token = new JwtUtil().encode(username);
+authRouter.post("/login", (req, res) => {
+  try {
+    const { username, password } = req.body;
+    const token = authController.signIn(username, password);
+
     res.json({ token });
-  } else {
-    res.status(401).json({ message: 'Invalid credentials!' });
+  } catch (error) {
+    if (error?.message === "Invalid credentials!") {
+      res.status(401).json({ message: "Invalid credentials!" });
+    }
+
+    throw error;
   }
 });
 
