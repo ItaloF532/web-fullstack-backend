@@ -17,13 +17,14 @@ wss.on("connection", function connection(ws, request) {
 
   ws.on("message", (data) => {
     const messageFromBuffer = data.toString();
-    const { chatId, userId, message } = JSON.parse(messageFromBuffer);
+    const parsedMessage = JSON.parse(messageFromBuffer);
+    const { chatId, userId, message } = parsedMessage;
 
     if (!chatId || !userId || !message) {
       ws.close(1003, "Invalid Message.");
       return;
     }
 
-    chatMessageController.postMessage(data);
+    chatMessageController.postMessage(chatId, userId, message);
   });
 });

@@ -14,10 +14,9 @@ class RabbitMqChatMessageProvider {
       message,
     };
 
-    channel.sendToQueue(
-      CHAT_MSG_QUEE_NAME,
-      Buffer.from(JSON.stringify(chatMessage))
-    );
+    const jsonMessage = JSON.stringify(chatMessage);
+
+    channel.sendToQueue(CHAT_MSG_QUEE_NAME, Buffer.from(jsonMessage));
 
     await channel.close();
     await connection.close();
