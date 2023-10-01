@@ -18,5 +18,15 @@ services:
     ports:
       - 6379:6379
 
+  rabbitmq3:
+    container_name: "rabbitmq"
+    image: rabbitmq:3.8-management-alpine
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      RABBITMQ_DEFAULT_USER: admin 
+      RABBITMQ_DEFAULT_PASS: aHR0cC1mb3ItYXM2NGEtc3VmZmljaWVuY3ktZXhhbQ==
+
 volumes:
   mongodb_data:
