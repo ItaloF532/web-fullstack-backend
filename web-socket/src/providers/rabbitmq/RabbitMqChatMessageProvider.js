@@ -1,5 +1,5 @@
 import * as amqp from "amqplib";
-import { CHAT_MSG_QUEE_NAME } from "../../constants/index.js";
+import { CHAT_MSG_URL, CHAT_MSG_QUEE_NAME } from "../../constants/index.js";
 
 class RabbitMqChatMessageProvider {
   async sendMessage(chatId, userId, message) {
@@ -14,7 +14,10 @@ class RabbitMqChatMessageProvider {
       message,
     };
 
-    channel.sendToQueue(queueName, Buffer.from(JSON.stringify(chatMessage)));
+    channel.sendToQueue(
+      CHAT_MSG_QUEE_NAME,
+      Buffer.from(JSON.stringify(chatMessage))
+    );
 
     await channel.close();
     await connection.close();

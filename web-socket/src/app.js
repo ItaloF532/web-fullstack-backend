@@ -17,7 +17,7 @@ wss.on("connection", function connection(ws, request) {
 
   ws.on("message", (data) => {
     const messageFromBuffer = data.toString();
-    const { chatId, userId, message } = messageFromBuffer;
+    const { chatId, userId, message } = JSON.parse(messageFromBuffer);
 
     if (!chatId || !userId || !message) {
       ws.close(1003, "Invalid Message.");
