@@ -1,4 +1,4 @@
-import chatMessageModel from "../models/ChatMessageModel";
+import chatMessageModel from "../models/ChatMessageModel.js";
 
 class MongooseChatMessageProvider {
   async writeMessage(chatId, userId, message) {
