@@ -1,0 +1,23 @@
+{
+  "name": "web-fullstack-backend",
+  "version": "1.0.0",
+  "description": "Backend  for as64a sufficiency exam",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "ws": "cd writing-service && npm run dev",
+    "http": "cd http && npm run dev",
+    "websocket": "cd web-socket && npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ItaloF532/web-fullstack-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ItaloF532/web-fullstack-backend/issues"
+  },
+  "homepage": "https://github.com/ItaloF532/web-fullstack-backend#readme"
+}
