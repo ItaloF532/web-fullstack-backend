@@ -2,25 +2,18 @@ import JwtUtil from "../../utils/JwtUtil.js";
 
 const jwtUtil = new JwtUtil();
 
-function authMiddleware(req, res, next) {
-  const token = req.header("authorization");
+function authMiddleware(req) {
+  const token = req?.headers?.authorization;
 
-  if (!token) {
-    return res.status(401).json({ message: "Missing authentication token!" });
-  }
+  if (!token) return false;
 
   try {
     const decodedToken = jwtUtil.decode(token.replace("Bearer ", ""));
 
-    req.user = {
-      id: decodedToken.user.id,
-      username: decodedToken.user.username,
-    };
-
-    next();
+    return !!decodedToken?.user?.id;
   } catch (error) {
     console.log(error);
-    return res.status(401).json({ message: "Invalid token!" });
+    return false;
   }
 }
 
