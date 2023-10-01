@@ -1,32 +1,28 @@
 import * as amqp from "amqplib";
+import "./providers/connection.js";
+import { CHAT_MSG_URL, CHAT_MSG_QUEE_NAME } from "./constants/index.js";
+import WriteMessageController from "./controllers/WriteMessageController.js";
 
-const SECRET_KEY = "aHR0cC1mb3ItYXM2NGEtc3VmZmljaWVuY3ktZXhhbQ==";
+const chatMessageController = new WriteMessageController();
 
-const CHAT_MSG_URL = `amqp://admin:${SECRET_KEY}@localhost:5672/`;
+async function receiverApp() {
+  const connection = await amqp.connect(CHAT_MSG_URL);
+  const channel = await connection.createChannel();
+  await channel.assertQueue(CHAT_MSG_QUEE_NAME, { durable: true });
+  await channel.consume(
+    CHAT_MSG_QUEE_NAME,
+    async (msg) => {
+      const jsonData = msg.content.toString();
+      const receivedData = JSON.parse(jsonData);
 
-const CHAT_MSG_QUEE_NAME = "chat-message";
+      await chatMessageController.writeMessage(receivedData);
 
-amqp.connect(CHAT_MSG_URL, (error0, connection) => {
-  if (error0) {
-    throw error0;
-  }
-  connection.createChannel((error1, channel) => {
-    if (error1) {
-      throw error1;
+      channel.ack(msg);
+    },
+    {
+      noAck: false,
     }
+  );
+}
 
-    channel.assertQueue(CHAT_MSG_QUEE_NAME, {
-      durable: false,
-    });
-
-    channel.consume(
-      CHAT_MSG_QUEE_NAME,
-      (msg) => {
-        console.log(" [x] Received %s", msg.content.toString());
-      },
-      {
-        noAck: true,
-      }
-    );
-  });
-});
+receiverApp();
