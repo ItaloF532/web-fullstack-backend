@@ -8,8 +8,8 @@ class AuthController {
   async signIn(username, password) {
     const user = await this.mongoUserProvider.getUserByUserName(username);
 
-    const isValidUserName = username === user.username;
-    const isValidPassword = password === user.password;
+    const isValidUserName = username === user?.username;
+    const isValidPassword = password === user?.password;
 
     if (!isValidUserName || !isValidPassword) {
       throw new Error("Invalid credentials!");

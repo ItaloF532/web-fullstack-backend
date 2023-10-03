@@ -17,6 +17,8 @@ class MongooseUserProvider {
       username,
     });
 
+    if (!user) return undefined;
+
     return {
       id: user._id.toString(),
       username: user.username,
