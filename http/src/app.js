@@ -1,4 +1,5 @@
 import fs from "fs";
+import cors from "cors";
 import https from "https";
 import express from "express";
 import "./providers/mongoose/connection.js";
@@ -11,6 +12,7 @@ const cert = fs.readFileSync("/Users/italo/cert.pem");
 const app = express();
 const server = https.createServer({ key: key, cert: cert }, app);
 
+app.use(cors());
 app.use(express.json());
 app.use(authRouter);
 app.use(userRouter);
