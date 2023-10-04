@@ -6,12 +6,23 @@ const chatRouter = Router();
 const chatController = new ChatController();
 
 chatRouter.post("/create-chat", authMiddleware, async (req, res) => {
-  const createdChat = await chatController.createChat(
-    req.user.id,
-    req.body.partnerId
-  );
+  try {
+    const createdChat = await chatController.createChat(
+      req.user.id,
+      req.body.partnerId
+    );
 
-  res.send({ createdChat });
+    res.send({ createdChat });
+  } catch (error) {
+    if (error?.message === "There is already a chat with this user!") {
+      res
+        .status(409)
+        .send({ message: "There is already a chat with this user!" });
+      return;
+    }
+
+    throw error;
+  }
 });
 
 chatRouter.get("/get-user-chats", authMiddleware, async (req, res) => {

@@ -23,6 +23,7 @@ class MongooseUserProvider {
       id: user._id.toString(),
       username: user.username,
       password: user.password,
+      profileImage: user.profileImage,
     };
   }
 

@@ -3,6 +3,12 @@ import { ObjectId } from "mongoose";
 
 class MongooseChatProvider {
   async createChat(users) {
+    const chats = await chatModel.find({
+      users,
+    });
+
+    if (chats) throw new Error("There is already a chat with this user!");
+
     const createdChat = await chatModel.create({
       users,
     });
