@@ -5,6 +5,7 @@ const database = mongoose.connection.useDb("web-fullstack");
 const messageSchema = new mongoose.Schema({
   userId: { type: String, required: true },
   message: { type: String, required: true },
+  createdAt: { type: String, default: new Date().toISOString() },
 });
 
 const chatMessageSchema = new Schema(

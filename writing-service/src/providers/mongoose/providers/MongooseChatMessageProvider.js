@@ -1,11 +1,11 @@
 import chatMessageModel from "../models/ChatMessageModel.js";
 
 class MongooseChatMessageProvider {
-  async writeMessage(chatId, userId, message) {
+  async writeMessage(chatId, userId, message, createdAt) {
     const messageData = {
       userId,
       message,
-      createdAt: new Date().toISOString(),
+      createdAt,
     };
 
     const chat = await chatMessageModel.findOne({ chatId }).catch((_) => null);

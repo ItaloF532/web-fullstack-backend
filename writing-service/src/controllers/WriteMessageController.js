@@ -3,8 +3,13 @@ import MongooseChatMessageProvider from "../providers/mongoose/providers/Mongoos
 class WriteMessageController {
   chatMessageProvider = new MongooseChatMessageProvider();
 
-  async writeMessage({ chatId, userId, message }) {
-    await this.chatMessageProvider.writeMessage(chatId, userId, message);
+  async writeMessage({ chatId, userId, message, createdAt }) {
+    await this.chatMessageProvider.writeMessage(
+      chatId,
+      userId,
+      message,
+      createdAt
+    );
   }
 }
 
