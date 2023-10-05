@@ -5,7 +5,13 @@ import ChatMessageController from "./infra/controllers/ChatMessageController.js"
 const wss = new WebSocketServer({ port: 8000 });
 const chatMessageController = new ChatMessageController();
 
-const connections = new Set();
+const users = new Set();
+
+function sendMessage(message) {
+  users.forEach((user) => {
+    user.ws.send(JSON.stringify(message));
+  });
+}
 
 wss.on("connection", function connection(ws, request) {
   ws.on("error", console.error);
@@ -17,7 +23,8 @@ wss.on("connection", function connection(ws, request) {
     return;
   }
 
-  connections.add(ws);
+  const userRef = { ws };
+  users.add(userRef);
 
   ws.on("message", (data) => {
     const messageFromBuffer = data.toString();
@@ -29,11 +36,12 @@ wss.on("connection", function connection(ws, request) {
       return;
     }
 
-    connections.forEach((conn) => conn.send(message));
-    chatMessageController.postMessage(chatId, userId, message);
+    sendMessage({ chatId, userId, message, createdAt });
+    chatMessageController.postMessage(chatId, userId, message, createdAt);
   });
 
-  ws.on("close", () => {
-    connections.delete(ws);
+  ws.on("close", (code, reason) => {
+    users.delete(userRef);
+    console.log(`Connection closed: ${code} ${reason}!`);
   });
 });
