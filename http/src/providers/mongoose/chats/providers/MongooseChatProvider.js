@@ -7,7 +7,11 @@ class MongooseChatProvider {
       users,
     });
 
-    if (chats) throw new Error("There is already a chat with this user!");
+    console.log(chats);
+
+    if (chats.length) {
+      throw new Error("There is already a chat with this user!");
+    }
 
     const createdChat = await chatModel.create({
       users,
