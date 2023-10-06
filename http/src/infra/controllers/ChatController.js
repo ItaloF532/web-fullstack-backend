@@ -46,6 +46,10 @@ class ChatController {
     );
     return formatedChats;
   }
+
+  async getChatMessages(chatId) {
+    return this.chatProvider.getChatMessages(chatId);
+  }
 }
 
 export default ChatController;

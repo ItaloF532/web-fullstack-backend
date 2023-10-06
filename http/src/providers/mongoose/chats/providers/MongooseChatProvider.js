@@ -1,3 +1,4 @@
+import chatMessageModel from "../models/ChatMessageModel.js";
 import chatModel from "../models/ChatModel.js";
 import { ObjectId } from "mongoose";
 
@@ -25,6 +26,11 @@ class MongooseChatProvider {
       users: { $elemMatch: { $eq: userId } },
     });
     return chats;
+  }
+
+  async getChatMessages(chatId) {
+    const chat = await chatMessageModel.findById(chatId);
+    return chat;
   }
 }
 
