@@ -8,8 +8,6 @@ class MongooseChatProvider {
       users,
     });
 
-    console.log(chats);
-
     if (chats.length) {
       throw new Error("There is already a chat with this user!");
     }
@@ -29,7 +27,9 @@ class MongooseChatProvider {
   }
 
   async getChatMessages(chatId) {
-    const chat = await chatMessageModel.findById(chatId);
+    const chat = await chatMessageModel.findOne({
+      chatId,
+    });
     return chat;
   }
 }

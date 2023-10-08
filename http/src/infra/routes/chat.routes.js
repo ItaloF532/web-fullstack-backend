@@ -33,7 +33,6 @@ chatRouter.get("/get-user-chats", authMiddleware, async (req, res) => {
 
 chatRouter.get("/chat/:chatId/messages", authMiddleware, async (req, res) => {
   const chat = await chatController.getChatMessages(req.params.chatId);
-
   res.send({ chat });
 });
 
