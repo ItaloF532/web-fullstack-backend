@@ -5,7 +5,7 @@ import { authMiddleware } from "../middlewares/auth.middleware.js";
 const userRouter = Router();
 const userController = new UserController();
 
-userRouter.get("/get-users", authMiddleware, async (req, res) => {
+userRouter.get("/users", authMiddleware, async (req, res) => {
   const users = await userController.getUsersName();
 
   const currentUserIndex = users.findIndex((user) => user.id === req.user.id);

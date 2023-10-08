@@ -10,6 +10,7 @@ SECRET_KEY = "aHR0cC1mb3ItYXM2NGEtc3VmZmljaWVuY3ktZXhhbQ=="
 DATA_BASE_URI="mongodb://admin:aHR0cC1mb3ItYXM2NGEtc3VmZmljaWVuY3ktZXhhbQ%3D%3D@localhost:27017/"
 REDIS_PORT=6379
 REDIS_HOST=localhost
+SALT="c434bf9b5a1bea0c0f5a806767d53c46cc1c5c43219c1d8d8ad9fcb3c3714dd6"
 ```
 
 Para o projeto WEBS_OCKET:

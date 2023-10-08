@@ -5,7 +5,7 @@ import { authMiddleware } from "../middlewares/auth.middleware.js";
 const chatRouter = Router();
 const chatController = new ChatController();
 
-chatRouter.post("/create-chat", authMiddleware, async (req, res) => {
+chatRouter.post("/chat", authMiddleware, async (req, res) => {
   try {
     const createdChat = await chatController.createChat(
       req.user.id,
@@ -25,7 +25,7 @@ chatRouter.post("/create-chat", authMiddleware, async (req, res) => {
   }
 });
 
-chatRouter.get("/get-user-chats", authMiddleware, async (req, res) => {
+chatRouter.get("/chats", authMiddleware, async (req, res) => {
   const chats = await chatController.getUserChats(req.user.id);
 
   res.send({ chats });
