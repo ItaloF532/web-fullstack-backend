@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon src/app.js",
-    "start": "node src/app.js"
+    "dev": "nodemon -r dotenv/config src/app.js",
+    "start": "node -r dotenv/config src/app.js"
   },
   "keywords": [],
   "author": "ItaloF532",
