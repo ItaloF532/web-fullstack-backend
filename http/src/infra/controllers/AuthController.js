@@ -7,6 +7,9 @@ class AuthController {
 
   async signIn(username, password) {
     const user = await this.mongoUserProvider.getUserByUserName(username);
+    console.log("dbpass", user?.password);
+    console.log("password", password);
+
     const isValidUserName = username === user?.username;
     const isValidPassword = password === user?.password;
 
